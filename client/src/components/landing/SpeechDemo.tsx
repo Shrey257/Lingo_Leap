@@ -155,13 +155,19 @@ export function SpeechDemo() {
             <DialogTitle className="text-2xl font-heading font-bold text-center">
               हिंदी अक्षर (Hindi Characters)
             </DialogTitle>
+            <p className="text-center text-gray-600 mt-2">
+              Explore the beautiful characters of Hindi language to enhance your learning experience
+            </p>
             <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
               <X className="h-4 w-4" />
               <span className="sr-only">Close</span>
             </DialogClose>
           </DialogHeader>
           <div className="my-6">
-            <h3 className="text-lg font-medium mb-3">स्वर (Vowels)</h3>
+            <div className="flex items-center mb-3 bg-gradient-to-r from-[#FF5722]/20 to-[#FF5722]/5 p-3 rounded-lg">
+              <span className="bg-[#FF5722] text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mr-3">स्व</span>
+              <h3 className="text-lg font-medium">स्वर (Vowels)</h3>
+            </div>
             <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-4 mb-6">
               {hindiAkshar.slice(0, 12).map((akshar, index) => (
                 <motion.div
@@ -169,14 +175,24 @@ export function SpeechDemo() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="bg-primary/10 hover:bg-primary/20 rounded-lg p-4 flex items-center justify-center cursor-pointer"
+                  whileHover={{ 
+                    scale: 1.2, 
+                    boxShadow: "0 0 15px rgba(255, 87, 34, 0.7)",
+                    backgroundColor: "#FF5722",
+                    color: "white",
+                    transition: { duration: 0.2 }
+                  }}
+                  className="bg-gradient-to-br from-[#FF5722]/10 to-[#FF5722]/30 hover:bg-[#FF5722]/20 rounded-lg p-4 flex items-center justify-center cursor-pointer shadow-md"
                 >
-                  <span className="text-2xl font-bold">{akshar}</span>
+                  <span className="text-3xl font-bold">{akshar}</span>
                 </motion.div>
               ))}
             </div>
             
-            <h3 className="text-lg font-medium mb-3">व्यंजन (Consonants)</h3>
+            <div className="flex items-center mb-3 bg-gradient-to-r from-[#2196F3]/20 to-[#2196F3]/5 p-3 rounded-lg">
+              <span className="bg-[#2196F3] text-white font-bold w-8 h-8 rounded-full flex items-center justify-center mr-3">व्यं</span>
+              <h3 className="text-lg font-medium">व्यंजन (Consonants)</h3>
+            </div>
             <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
               {hindiAkshar.slice(12).map((akshar, index) => (
                 <motion.div
@@ -185,16 +201,26 @@ export function SpeechDemo() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: (index + 12) * 0.03 }}
                   whileHover={{ 
-                    scale: 1.1,
-                    backgroundColor: "rgba(79, 70, 229, 0.3)",
+                    scale: 1.2, 
+                    boxShadow: "0 0 15px rgba(33, 150, 243, 0.7)",
+                    backgroundColor: "#2196F3",
+                    color: "white",
                     transition: { duration: 0.2 }
                   }}
-                  className="bg-primary/5 rounded-lg p-4 flex items-center justify-center cursor-pointer"
+                  className="bg-gradient-to-br from-[#2196F3]/10 to-[#2196F3]/30 rounded-lg p-4 flex items-center justify-center cursor-pointer shadow-md"
                 >
-                  <span className="text-2xl font-bold">{akshar}</span>
+                  <span className="text-3xl font-bold">{akshar}</span>
                 </motion.div>
               ))}
             </div>
+          </div>
+          
+          <div className="mt-6 border-t border-gray-200 pt-6">
+            <p className="text-center text-sm text-gray-500">
+              Create your projects using these characters and many more from different Indian languages.
+              <br/>
+              <span className="font-medium text-primary">LingoLeap supports Hindi, Marathi, Punjabi, and other Indian languages!</span>
+            </p>
           </div>
         </DialogContent>
       </Dialog>

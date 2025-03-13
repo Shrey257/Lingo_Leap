@@ -27,10 +27,10 @@ export function Hero({ openAuthDialog }: HeroProps) {
             variants={fadeIn("right", "tween", 0.2, 1)}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-6">
-              Master Any Language with <span className="text-primary">AI-Powered</span> Learning
+              Master <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#FF5722] via-[#2196F3] to-[#FFC107]">Indian Languages</span> with <span className="text-primary">AI-Powered</span> Learning
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8">
-              LingoLeap combines cutting-edge AI and speech recognition to make language learning fun, effective, and personalized to your needs.
+              LingoLeap helps you create projects in <strong>any Indian language</strong> including Hindi, Marathi, Punjabi, Bengali, and more. Experience our cutting-edge AI and speech recognition technology that makes language learning fun, effective, and personalized.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <ButtonHover 
@@ -113,6 +113,24 @@ export function Hero({ openAuthDialog }: HeroProps) {
                 <div>
                   <p className="text-sm font-medium">98% accuracy</p>
                   <p className="text-xs text-gray-500">Great pronunciation!</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* New floating element */}
+            <motion.div 
+              className="absolute top-1/2 -right-10 bg-white p-4 rounded-xl shadow-lg border border-gray-100 hidden md:block"
+              initial={{ opacity: 0, x: 20, y: -50 }}
+              animate={{ opacity: 1, x: 0, y: -50 }}
+              transition={{ delay: 1 }}
+            >
+              <div className="flex items-center">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF5722] via-[#2196F3] to-[#FFC107] flex items-center justify-center text-white mr-3">
+                  <span role="img" aria-label="Globe">🌐</span>
+                </div>
+                <div>
+                  <p className="text-sm font-medium">Multi-language Projects</p>
+                  <p className="text-xs text-gray-500">Build in any Indian language!</p>
                 </div>
               </div>
             </motion.div>
