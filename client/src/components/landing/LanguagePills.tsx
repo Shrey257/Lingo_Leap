@@ -8,12 +8,12 @@ interface Language {
 
 export function LanguagePills() {
   const languages: Language[] = [
-    { name: "Spanish", flag: "🇪🇸" },
-    { name: "French", flag: "🇫🇷" },
-    { name: "Japanese", flag: "🇯🇵" },
-    { name: "German", flag: "🇩🇪" },
-    { name: "Mandarin", flag: "🇨🇳" },
-    { name: "Italian", flag: "🇮🇹" },
+    { name: "Hindi", flag: "🇮🇳" },
+    { name: "Marathi", flag: "🇮🇳" },
+    { name: "Bengali", flag: "🇮🇳" },
+    { name: "Gujarati", flag: "🇮🇳" },
+    { name: "Punjabi", flag: "🇮🇳" },
+    { name: "Tamil", flag: "🇮🇳" },
   ];
 
   return (

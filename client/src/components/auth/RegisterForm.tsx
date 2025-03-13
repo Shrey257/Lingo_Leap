@@ -77,7 +77,7 @@ export function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
   };
 
   const languages = [
-    "Spanish", "French", "German", "Japanese", "Italian", "Mandarin"
+    "Hindi", "Marathi", "Bengali", "Gujarati", "Punjabi", "Tamil"
   ];
 
   const handleLanguageSelect = (language: string) => {
