@@ -1,12 +1,24 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { staggerContainer, fadeIn } from "@/lib/animations";
 import { Button } from "@/components/ui/button";
-import { Volume2, Mic } from "lucide-react";
+import { Volume2, Mic, X } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
 
 export function SpeechDemo() {
   const [isListening, setIsListening] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [showAksharDialog, setShowAksharDialog] = useState(false);
+
+  const hindiAkshar = [
+    'अ', 'आ', 'इ', 'ई', 'उ', 'ऊ', 'ए', 'ऐ', 'ओ', 'औ', 'अं', 'अः',
+    'क', 'ख', 'ग', 'घ', 'ङ', 
+    'च', 'छ', 'ज', 'झ', 'ञ',
+    'ट', 'ठ', 'ड', 'ढ', 'ण',
+    'त', 'थ', 'द', 'ध', 'न',
+    'प', 'फ', 'ब', 'भ', 'म',
+    'य', 'र', 'ल', 'व', 'श', 'ष', 'स', 'ह', 'क्ष', 'त्र'
+  ];
 
   const handleMicClick = () => {
     setIsListening(true);
@@ -53,8 +65,13 @@ export function SpeechDemo() {
             
             <div className="bg-gray-50 p-6 rounded-xl mb-8 flex flex-col md:flex-row md:items-center justify-between">
               <div>
-                <p className="text-xl font-accent mb-2">नमस्ते, आप कैसे हैं?</p>
-                <p className="text-gray-500 text-sm">Namaste, how are you?</p>
+                <p 
+                  className="text-xl font-accent mb-2 cursor-pointer hover:text-primary transition-colors"
+                  onClick={() => setShowAksharDialog(true)}
+                >
+                  नमस्ते, आप कैसे हैं?
+                </p>
+                <p className="text-gray-500 text-sm">Namaste, how are you? <span className="text-xs text-primary">(Click to see Hindi characters)</span></p>
               </div>
               <Button 
                 className="mt-4 md:mt-0 bg-primary text-white rounded-full" 
@@ -130,6 +147,57 @@ export function SpeechDemo() {
           </div>
         </motion.div>
       </motion.div>
+
+      {/* Hindi Akshar Dialog */}
+      <Dialog open={showAksharDialog} onOpenChange={setShowAksharDialog}>
+        <DialogContent className="sm:max-w-[800px] overflow-y-auto max-h-[90vh]">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-heading font-bold text-center">
+              हिंदी अक्षर (Hindi Characters)
+            </DialogTitle>
+            <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </DialogClose>
+          </DialogHeader>
+          <div className="my-6">
+            <h3 className="text-lg font-medium mb-3">स्वर (Vowels)</h3>
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-4 mb-6">
+              {hindiAkshar.slice(0, 12).map((akshar, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className="bg-primary/10 hover:bg-primary/20 rounded-lg p-4 flex items-center justify-center cursor-pointer"
+                >
+                  <span className="text-2xl font-bold">{akshar}</span>
+                </motion.div>
+              ))}
+            </div>
+            
+            <h3 className="text-lg font-medium mb-3">व्यंजन (Consonants)</h3>
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
+              {hindiAkshar.slice(12).map((akshar, index) => (
+                <motion.div
+                  key={index + 12}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: (index + 12) * 0.03 }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    backgroundColor: "rgba(79, 70, 229, 0.3)",
+                    transition: { duration: 0.2 }
+                  }}
+                  className="bg-primary/5 rounded-lg p-4 flex items-center justify-center cursor-pointer"
+                >
+                  <span className="text-2xl font-bold">{akshar}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

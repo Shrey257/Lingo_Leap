@@ -3,6 +3,7 @@ import { ButtonHover } from "@/components/ui/button-hover";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeIn, slideIn } from "@/lib/animations";
 import { Play } from "lucide-react";
+import { BouncingAkshar } from "./BouncingAkshar";
 
 interface HeroProps {
   openAuthDialog: (view: "login" | "register") => void;
@@ -10,9 +11,12 @@ interface HeroProps {
 
 export function Hero({ openAuthDialog }: HeroProps) {
   return (
-    <section className="pt-32 pb-20 overflow-hidden">
+    <section className="pt-32 pb-20 overflow-hidden relative">
+      {/* Bouncing Akshar Animation */}
+      <BouncingAkshar />
+      
       <motion.div 
-        className="container mx-auto px-6 md:px-12"
+        className="container mx-auto px-6 md:px-12 relative z-10"
         variants={staggerContainer}
         initial="hidden"
         animate="show"
