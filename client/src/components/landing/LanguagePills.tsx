@@ -193,7 +193,13 @@ export function LanguagePills() {
               scale: 1.05,
               boxShadow: "0 15px 30px -10px rgba(0,0,0,0.3)"
             }}
+            whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.3 }}
+            onClick={() => toast({
+              title: "More Languages Coming Soon!",
+              description: "We're adding more Indian languages to our platform. Stay tuned!",
+              duration: 3000,
+            })}
             variants={fadeIn("up", "tween", 0.05 * languages.length, 0.5)}
           >
             {/* Plus icon with animated effect */}
@@ -281,6 +287,8 @@ export function LanguagePills() {
           </motion.div>
         </motion.div>
       </motion.div>
+      
+      {showHindiQuiz && <HindiQuiz isOpen={showHindiQuiz} onClose={() => setShowHindiQuiz(false)} />}
     </section>
   );
 }
