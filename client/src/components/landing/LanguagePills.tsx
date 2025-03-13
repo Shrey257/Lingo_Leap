@@ -91,24 +91,61 @@ export function LanguagePills() {
               transition={{ duration: 0.3 }}
               variants={fadeIn("up", "tween", 0.05 * index, 0.5)}
             >
-              {/* Character Bubble */}
-              <div 
-                className="w-12 h-12 rounded-full flex items-center justify-center mr-4 text-white font-bold text-2xl shadow-inner transform transition-all group-hover:scale-110"
-                style={{ backgroundColor: language.color }}
-              >
-                {language.character}
+              {/* Character Bubble with hover animation */}
+              <div className="relative mr-4">
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-inner transform transition-all group-hover:scale-110 z-10 relative overflow-hidden"
+                  style={{ backgroundColor: language.color }}
+                >
+                  <motion.span
+                    initial={{ y: 0 }}
+                    whileHover={{ y: -30 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                  >
+                    {language.character}
+                  </motion.span>
+                  <motion.span
+                    className="absolute"
+                    initial={{ y: 30 }}
+                    whileHover={{ y: 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                  >
+                    {language.nativeName.charAt(0)}
+                  </motion.span>
+                </div>
+                {/* Radiating circles animation */}
+                <motion.div 
+                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
+                  style={{ border: `2px solid ${language.color}` }}
+                  animate={{ 
+                    scale: [1, 1.5, 1],
+                    opacity: [0, 0.5, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
               </div>
               
               <div className="flex flex-col items-start">
-                <span className="text-lg font-bold">{language.name}</span>
+                <span className="text-lg font-bold group-hover:text-transparent group-hover:bg-clip-text" 
+                  style={{ 
+                    backgroundImage: `linear-gradient(to right, ${language.color}, ${language.color}aa)`,
+                    transition: 'all 0.3s ease'
+                  }}>
+                  {language.name}
+                </span>
                 <span className="text-sm">{language.nativeName}</span>
               </div>
               
-              {/* Background decoration */}
+              {/* Background decoration with animation */}
               <motion.span 
                 className="absolute -right-4 -top-4 text-7xl opacity-10 font-bold"
-                initial={{ rotate: 0 }}
-                whileHover={{ rotate: 15 }}
+                initial={{ rotate: 0, scale: 1 }}
+                whileHover={{ rotate: 15, scale: 1.2 }}
+                transition={{ duration: 0.5 }}
                 style={{ color: language.color }}
               >
                 {language.character}
@@ -117,28 +154,96 @@ export function LanguagePills() {
           ))}
           
           <motion.div
-            className="bg-gradient-to-br from-gray-800/5 to-gray-900/20 p-4 rounded-xl shadow-lg flex items-center font-accent hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group"
+            className="bg-gradient-to-br from-gray-900/10 to-gray-900/30 p-4 rounded-xl shadow-lg flex items-center font-accent hover:shadow-xl transition-all cursor-pointer relative overflow-hidden group border border-transparent hover:border-gray-400/20"
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0 10px 25px -5px rgba(0,0,0,0.2)"
+              boxShadow: "0 15px 30px -10px rgba(0,0,0,0.3)"
             }}
             transition={{ duration: 0.3 }}
             variants={fadeIn("up", "tween", 0.05 * languages.length, 0.5)}
           >
-            <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center mr-4 text-white font-bold text-2xl">
-              +
+            {/* Plus icon with animated effect */}
+            <div className="relative mr-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center text-white font-bold text-2xl shadow-inner group-hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-110 z-10">
+                <motion.span
+                  animate={{ 
+                    rotateZ: [0, 180, 360],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  +
+                </motion.span>
+              </div>
+              
+              {/* Radiating circles */}
+              <motion.div 
+                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
+                style={{ border: "2px solid rgba(0,0,0,0.3)" }}
+                animate={{ 
+                  scale: [1, 1.5, 1],
+                  opacity: [0, 0.5, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
             </div>
+            
+            {/* Content with subtle animation */}
             <div className="flex flex-col items-start">
-              <span className="text-lg font-bold">15+ More</span>
-              <span className="text-sm">Indian Languages</span>
+              <motion.span 
+                className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600"
+                animate={{ 
+                  backgroundPosition: ["0% 0%", "100% 100%"],
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              >
+                15+ More
+              </motion.span>
+              <span className="text-sm group-hover:text-gray-700 transition-colors">Indian Languages</span>
             </div>
-            <motion.span 
-              className="absolute -right-8 -bottom-8 text-9xl opacity-5 font-bold text-gray-800"
-              initial={{ rotate: 0 }}
-              whileHover={{ rotate: -15 }}
-            >
-              +
-            </motion.span>
+            
+            {/* Background decorations */}
+            <div className="absolute right-0 bottom-0 w-24 h-24 opacity-5 group-hover:opacity-10 transition-opacity">
+              <motion.div
+                className="absolute font-bold text-9xl text-gray-800 right-[-20px] bottom-[-30px]"
+                initial={{ rotate: 0 }}
+                whileHover={{ rotate: -15 }}
+                animate={{ 
+                  rotate: [0, -10, 0],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                +
+              </motion.div>
+            </div>
+            
+            {/* Mini floating characters */}
+            <div className="absolute left-20 top-1 opacity-0 group-hover:opacity-70 transition-opacity duration-500">
+              <span className="text-xs">অ</span>
+            </div>
+            <div className="absolute left-24 bottom-2 opacity-0 group-hover:opacity-70 transition-opacity duration-500 delay-100">
+              <span className="text-xs">ଓ</span>
+            </div>
+            <div className="absolute left-28 top-3 opacity-0 group-hover:opacity-70 transition-opacity duration-500 delay-200">
+              <span className="text-xs">ಕ</span>
+            </div>
           </motion.div>
         </motion.div>
       </motion.div>

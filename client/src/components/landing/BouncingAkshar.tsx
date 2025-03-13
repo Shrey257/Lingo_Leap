@@ -141,6 +141,7 @@ export function BouncingAkshar() {
   
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-white/60 z-0"></div>
       {aksharElements.map((akshar, index) => {
         // Choose a random animation pattern
         const animationPattern = animationPatterns[Math.floor(Math.random() * animationPatterns.length)];
@@ -149,7 +150,7 @@ export function BouncingAkshar() {
         return (
           <motion.div
             key={index}
-            className="absolute font-bold"
+            className={`absolute font-bold cursor-pointer select-none ${index % 5 === 0 ? 'animate-pulse' : ''}`}
             initial={{ 
               x: `${akshar.x}vw`, 
               y: `${akshar.y}vh`,
@@ -166,12 +167,17 @@ export function BouncingAkshar() {
               ease: "easeInOut"
             }}
             whileHover={{
-              scale: 1.8,
-              textShadow: `0 0 ${akshar.glowIntensity * 2}px ${akshar.color}`,
+              scale: 2,
+              textShadow: `0 0 ${akshar.glowIntensity * 3}px ${akshar.color}`,
               transition: { duration: 0.3 }
             }}
           >
-            {akshar.character}
+            <span className="relative">
+              <span className="absolute inset-0 blur-sm opacity-70" style={{ color: akshar.color }}>
+                {akshar.character}
+              </span>
+              {akshar.character}
+            </span>
           </motion.div>
         );
       })}
