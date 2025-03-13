@@ -53,8 +53,8 @@ export function SpeechDemo() {
             
             <div className="bg-gray-50 p-6 rounded-xl mb-8 flex flex-col md:flex-row md:items-center justify-between">
               <div>
-                <p className="text-xl font-accent mb-2">Bonjour, comment allez-vous?</p>
-                <p className="text-gray-500 text-sm">Hello, how are you?</p>
+                <p className="text-xl font-accent mb-2">नमस्ते, आप कैसे हैं?</p>
+                <p className="text-gray-500 text-sm">Namaste, how are you?</p>
               </div>
               <Button 
                 className="mt-4 md:mt-0 bg-primary text-white rounded-full" 
