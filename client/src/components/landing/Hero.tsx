@@ -300,72 +300,143 @@ export function Hero({ openAuthDialog }: HeroProps) {
             className="order-1 md:order-2 relative"
             variants={slideIn("left", "tween", 0.2, 1)}
           >
-            <img
-              src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              alt="AI Language Learning Illustration"
-              className="w-full h-auto rounded-xl shadow-lg"
-            />
-
-            {/* Floating elements */}
-            <motion.div
-              className="absolute top-5 -left-10 bg-white p-4 rounded-xl shadow-lg border border-gray-100 hidden md:block"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary mr-3">
-                  <span role="img" aria-label="Fire">
-                    🔥
-                  </span>
-                </div>
-                <div>
-                  <p className="text-sm font-medium">7-day streak!</p>
-                  <p className="text-xs text-gray-500">Keep it going!</p>
-                </div>
+            {/* Avatar Guide */}
+            <div className="relative bg-gradient-to-br from-indigo-50 to-white p-6 rounded-xl shadow-lg border border-primary/20 h-full flex flex-col justify-center">
+              {/* Avatar character */}
+              <div className="relative mx-auto mb-4">
+                <motion.div 
+                  className="w-32 h-32 bg-gradient-to-br from-[#FF5722] via-[#4F46E5] to-[#10B981] rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 5, 0, -5, 0],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <motion.div
+                    className="absolute inset-1 rounded-full bg-white flex items-center justify-center overflow-hidden"
+                    animate={{ 
+                      borderRadius: ["50%", "50%"] 
+                    }}
+                  >
+                    <motion.div
+                      className="font-bold text-5xl bg-gradient-to-br from-[#FF5722] via-[#4F46E5] to-[#10B981] bg-clip-text text-transparent"
+                      animate={{ 
+                        rotate: [0, 10, 0, -10, 0]
+                      }}
+                      transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      गु
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+                
+                {/* Animated circles around avatar */}
+                <motion.div 
+                  className="absolute inset-0 rounded-full border-2 border-primary"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0, 0.5]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Floating elements near avatar */}
+                <motion.div
+                  className="absolute top-0 -right-4 text-2xl"
+                  animate={{ 
+                    y: [0, -10, 0],
+                    rotate: [0, 20, 0]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  ಕ
+                </motion.div>
+                <motion.div
+                  className="absolute bottom-0 -left-4 text-2xl text-[#FF5722]"
+                  animate={{ 
+                    y: [0, 10, 0],
+                    rotate: [0, -20, 0]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                >
+                  अ
+                </motion.div>
               </div>
-            </motion.div>
-
-            <motion.div
-              className="absolute -bottom-5 -right-5 bg-white p-4 rounded-xl shadow-lg border border-gray-100 hidden md:block"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8 }}
-            >
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-[#10B981]/20 flex items-center justify-center text-[#10B981] mr-3">
-                  <span role="img" aria-label="Check">
-                    ✓✓
-                  </span>
-                </div>
-                <div>
-                  <p className="text-sm font-medium">98% accuracy</p>
-                  <p className="text-xs text-gray-500">Great pronunciation!</p>
-                </div>
+              
+              <h3 className="text-xl font-bold text-center mb-3">Meet Guru, Your Learning Guide</h3>
+              
+              <motion.div
+                className="text-center text-gray-600 mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <p>I'll help you explore Indian languages and guide you through interactive lessons!</p>
+              </motion.div>
+              
+              {/* Speech bubbles with tips */}
+              <div className="space-y-4 mt-2">
+                <motion.div 
+                  className="bg-white p-3 rounded-lg shadow-md border border-gray-200 relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <div className="absolute -left-2 top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-white border-b-8 border-b-transparent"></div>
+                  <div className="flex items-start">
+                    <div className="bg-[#FF5722]/20 p-1 rounded-full mr-2">
+                      <span className="inline-block">🔍</span>
+                    </div>
+                    <p className="text-sm">Click on any language to start an interactive quiz!</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  className="bg-white p-3 rounded-lg shadow-md border border-gray-200 relative"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.1 }}
+                >
+                  <div className="absolute -left-2 top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-r-8 border-r-white border-b-8 border-b-transparent"></div>
+                  <div className="flex items-start">
+                    <div className="bg-primary/20 p-1 rounded-full mr-2">
+                      <span className="inline-block">🎯</span>
+                    </div>
+                    <p className="text-sm">Hover over characters to see them animate!</p>
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
-
-            {/* New floating element */}
-            <motion.div
-              className="absolute top-1/2 -right-10 bg-white p-4 rounded-xl shadow-lg border border-gray-100 hidden md:block"
-              initial={{ opacity: 0, x: 20, y: -50 }}
-              animate={{ opacity: 1, x: 0, y: -50 }}
-              transition={{ delay: 1 }}
-            >
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF5722] via-[#2196F3] to-[#FFC107] flex items-center justify-center text-white mr-3">
-                  <span role="img" aria-label="Globe">
-                    🌐
-                  </span>
-                </div>
-                <div>
-                  <p className="text-sm font-medium">Multi-language Projects</p>
-                  <p className="text-xs text-gray-500">
-                    Build in any Indian language!
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+              
+              {/* Interaction button */}
+              <motion.button
+                className="mt-6 bg-gradient-to-r from-primary to-[#6366F1] text-white px-6 py-3 rounded-full shadow-lg mx-auto block font-medium"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.4)" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Chat with Guru
+              </motion.button>
+            </div>
           </motion.div>
         </div>
       </motion.div>

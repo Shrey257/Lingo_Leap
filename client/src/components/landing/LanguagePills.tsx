@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeIn } from "@/lib/animations";
+import { HindiQuiz } from "../quiz/HindiQuiz";
+import { useToast } from "@/hooks/use-toast";
 
 interface Language {
   name: string;
@@ -10,6 +13,24 @@ interface Language {
 }
 
 export function LanguagePills() {
+  const [showHindiQuiz, setShowHindiQuiz] = useState(false);
+  const [activeLanguage, setActiveLanguage] = useState<string | null>(null);
+  const { toast } = useToast();
+  
+  const handleLanguageClick = (language: string) => {
+    setActiveLanguage(language);
+    
+    if (language === "Hindi") {
+      setShowHindiQuiz(true);
+    } else {
+      toast({
+        title: `${language} Quiz Coming Soon!`,
+        description: `The ${language} quiz is currently being developed. Check back soon!`,
+        duration: 3000,
+      });
+    }
+  };
+  
   const languages: Language[] = [
     { 
       name: "Hindi", 
@@ -88,8 +109,10 @@ export function LanguagePills() {
                 scale: 1.05,
                 boxShadow: `0 10px 25px -5px ${language.color}40`
               }}
+              whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.3 }}
               variants={fadeIn("up", "tween", 0.05 * index, 0.5)}
+              onClick={() => handleLanguageClick(language.name)}
             >
               {/* Character Bubble with hover animation */}
               <div className="relative mr-4">
@@ -150,6 +173,17 @@ export function LanguagePills() {
               >
                 {language.character}
               </motion.span>
+              
+              {/* "Click to start quiz" tooltip on hover */}
+              <motion.div 
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 backdrop-blur-sm rounded-xl"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+              >
+                <div className="bg-white py-2 px-4 rounded-full shadow-md text-xs font-medium">
+                  Click to start quiz
+                </div>
+              </motion.div>
             </motion.div>
           ))}
           
