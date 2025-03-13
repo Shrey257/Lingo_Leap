@@ -384,7 +384,7 @@ export function Hero({ openAuthDialog }: HeroProps) {
                 </motion.div>
               </div>
               
-              <h3 className="text-xl font-bold text-center mb-3">Meet Guru, Your Learning Guide</h3>
+              <h3 className="text-xl font-bold text-center mb-3">Single Window for learning Indian Languages</h3>
               
               <motion.div
                 className="text-center text-gray-600 mb-4"
@@ -434,7 +434,7 @@ export function Hero({ openAuthDialog }: HeroProps) {
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.4)" }}
                 whileTap={{ scale: 0.95 }}
               >
-                Chat with Guru
+                Learn with LingoChat
               </motion.button>
             </div>
           </motion.div>
